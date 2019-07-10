@@ -1,0 +1,38 @@
+﻿@model  Shop.ViewModels.ItemModels.ItemListingModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+
+<div class="card">
+
+   
+    <div class="card-body">
+        <img class="card-img-top" src="@Model.ImageUrl" alt="Card image cap" />
+        <h2 class="card-title">@Model.Name</h2>
+
+        <h4>Price: @Model.Price.ToString("c")</h4>
+        <h4>In stock: @Model.InStock</h4>
+
+        <h5><a asp-controller="Items" asp-action="Index" asp-route-category="@Model.Category.CategoryName">@Model.Category.CategoryName</a></h5>
+
+
+        <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-itemId="@Model.ItemId" class="btn btn-lg btn-success m-1">Add to cart</a>
+        <hr />
+
+        <h5><b>@Model.ShortDescription</b> </h5>
+        <p class="card-text text-justify">@Model.Description</p>
+        <a asp-controller="Items" asp-action="Index" class="btn btn-warning">Go back</a>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+

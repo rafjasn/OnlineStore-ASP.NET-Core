@@ -1,0 +1,81 @@
+﻿@model Shop.ViewModels.ItemModels.ItemIndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (ViewBag.CatName == null)
+{
+    <h1>Browse for items </h1>
+}
+else
+{
+<h1>Browse for items in @ViewBag.CatName</h1>
+}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="list-group text-primary">
+            @if (ViewBag.CatName == null)
+            {
+            <a asp-route-category="" class="list-group-item list-group-item-action active ">
+                <b>All items</b>
+            </a>
+
+            }
+            else
+            {
+
+
+            <a asp-route-category="" class="list-group-item list-group-item-action ">
+                <b>All items</b>
+            </a>
+
+            }
+
+            @foreach (var cat in Model.Categories)
+            {
+                if (cat.CategoryName == ViewBag.CatName)
+                {
+                    <a asp-route-category="@cat.CategoryName" class="list-group-item list-group-item-action active ">
+                        @cat.CategoryName
+                    </a>
+
+                }
+                else
+                {
+
+
+                    <a asp-route-category="@cat.CategoryName" class="list-group-item list-group-item-action ">
+                        @cat.CategoryName
+                    </a>
+
+                }
+
+
+            }
+        </div>
+    </div>
+    <div class="col-sm-9">
+
+        <div class="row">
+            @foreach (var item in Model.Items)
+            {
+            <div class="col-12">
+                @Html.Partial("_item", item)
+
+
+                @*<div>@item.Name</div>
+        <div>@item.Category.CategoryName</div>*@
+
+            </div>
+            }
+
+        </div>
+    </div>
+</div>
+

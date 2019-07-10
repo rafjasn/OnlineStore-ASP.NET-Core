@@ -1,0 +1,55 @@
+﻿@model  Shop.ViewModels.ShoppingCardModels.ShoppingCardModel
+
+<div class="row checkoutForm">
+    <h2>Your shopping cart</h2>
+    
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+
+                <th class="text-right">Price</th>
+                <th class="text-right">Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+            {
+            <tr>
+                <td class="text-left">@line.Item.Name</td>
+                <td class="text-center">@line.Quantity</td>
+
+                <td class="text-right">@line.Item.Price.ToString("c")</td>
+                <td class="text-right">
+                    @((line.Quantity * line.Item.Price).ToString("c"))
+                </td>
+
+                <td class="text-center">
+                    <a class=" text-danger" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-itemId="@line.Item.ItemId">Remove</a>
+                    <br />
+                    <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-itemId="@line.Item.ItemId">Add one more</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right text-primary"><b>Total of all items:</b></td>
+                <td class="text-right text-primary">
+                    <b> @Model.ShoppingCartTotal.ToString("c")</b>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-right">
+        <div class="btn-group ">
+            <a class="btn btn-success" asp-controller="Order" asp-action="Checkout">Check out</a>
+            
+             <a class="btn btn-primary ml-2" asp-controller="Items" asp-action="Index">Continue Shopping</a>
+            
+        </div>
+    </div>
+</div>

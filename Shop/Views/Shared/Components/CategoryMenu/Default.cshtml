@@ -1,0 +1,14 @@
+﻿@model Shop.ViewModels.ItemModels.ItemIndexModel   
+ <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Categories
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            @foreach( var cat in Model.Categories){
+            
+            
+            <a asp-controller="Items" asp-action="Index" asp-route-category="@cat.CategoryName" class="dropdown-item" href="#">@cat.CategoryName</a>
+       
+            }
+        </div>
+    </div>

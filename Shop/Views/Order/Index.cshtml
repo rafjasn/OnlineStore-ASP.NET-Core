@@ -1,0 +1,97 @@
+﻿@model Shop.ViewModels.OrderModels.OrderListingModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Orders</h1>
+
+<h3>List of orders placed by clients</h3>
+
+<table id="orderTable" class="table table-bordered table-hover">
+    <thead>
+
+        <tr>
+            <th>Order Id</th>
+            <th>Order Time</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Total</th>
+            <th>Show Details</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model.Orders)
+        {
+        <tr>
+            <td>@order.OrderId</td>
+            <td>@order.OrderTime</td>
+            <td>@order.FirstName</td>
+            <td>@order.LastName</td>
+            <td>@order.PhoneNumber</td>
+            <td>@order.Email</td>
+            <td>@order.Addres1 
+             @order.Addres2</td>
+            <td>@order.OrderTotal</td>
+
+
+
+            <td><a asp-route-id="@order.OrderId">Details</a></td>
+
+
+        </tr>
+        }
+    </tbody>
+
+</table>
+
+
+
+
+
+<h3>Order @foreach (var detail in Model.Details) {@detail.OrderId; break; } Details</h3>
+<table class="table table-bordered table-hover" >
+    <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Item Price</th>
+            <th>Quantity</th>
+            <th>Item Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detail in Model.Details)
+        {
+            <tr>
+                <td>@detail.Item.Name</td>
+                <td>@detail.Price</td>
+                <td>@detail.Quantity</td>
+                <td>@(detail.Quantity * detail.Price) </td>
+                
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+@section  scripts {
+
+    <script>
+
+        $(document).ready(function() {
+    $('#orderTable').DataTable();
+} );
+    </script>
+}

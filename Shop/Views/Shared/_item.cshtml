@@ -1,0 +1,40 @@
+﻿
+@model  Shop.ViewModels.ItemModels.ItemListingModel
+
+
+
+
+    <div class="card">
+        <div class="row">
+            <div class="col-2 ">
+                <img class="rounded mt-5 ml-3 card-img" style="width: 50%" src="@Model.ImageUrl" alt="Card image cap">
+            </div>
+            <div class="col-7">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">@Model.Name</h5>
+
+                    <p class="card-text">
+                        <div class="text-muted">@Model.ShortDescription</div>
+                        
+                        <div>In stock: @Model.InStock</div>
+
+                    </p>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card-body">
+                    <p class="card-text ">
+                        <div class="text-lg-center text-primary">Price: @Model.Price.ToString("c")</div>
+                        <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-itemId="@Model.ItemId" class="btn btn-block btn-success m-1">Add to cart</a>
+                        <a asp-controller="Items" asp-action="Details" asp-route-itemId="@Model.ItemId" class="btn btn-block btn-info m-1">Details</a>
+                    </p>
+                </div>
+                </div>
+
+            </div>
+    </div>
+
+
+@*<div>@Model.Name</div>
+<div></div>
+<div>@Model.Category.CategoryName</div>*@

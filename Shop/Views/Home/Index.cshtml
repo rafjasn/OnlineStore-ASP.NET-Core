@@ -1,0 +1,52 @@
+﻿@model  Shop.ViewModels.HomeModels.HomeModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+
+<div class="row">
+
+    <div class="col-4">
+        <h3> Categories: </h3>
+        
+            <div class=" list-group-item-dark text-primary">
+               
+
+
+                    <a asp-controller="Items" asp-action="Index" asp-route-category="" class="list-group-item list-group-item-action active ">
+                        <b>See All Items</b>
+                    </a>
+
+                
+
+                @foreach (var cat in Model.Categories)
+                {
+                   
+                      
+
+                        <a asp-controller="Items" asp-action="Index" asp-route-category="@cat.CategoryName" class="list-group-item list-group-item-action ">
+                            @cat.CategoryName
+                        </a>
+
+                    
+
+
+                }
+        
+        </div>
+
+
+    </div>
+    <div class="col-8">
+        <h3>Special offers: </h3>
+        @foreach (var item in Model.SpecialOffers)
+        {
+            @Html.Partial("_item", item)
+        }
+
+    </div>
+
+</div>
